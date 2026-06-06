@@ -1,0 +1,77 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Python packaging and build artifacts
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Home Assistant runtime and local configuration
+.storage/
+.cloud/
+.HA_VERSION
+deps/
+tts/
+www/
+home-assistant.log*
+OZW_Log.txt
+ip_bans.yaml
+known_devices.yaml
+secrets.yaml
+configuration.yaml
+automations.yaml
+scripts.yaml
+scenes.yaml
+groups.yaml
+customize.yaml
+
+# Home Assistant databases and backups
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.tar
+*.tar.gz
+*.backup
+
+# Local test and generated files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example

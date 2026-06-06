@@ -28,7 +28,7 @@ The inverter is a grid tied inverter so it might shutdown when there is no enoug
 
 
 
-##Inverter status
+## Inverter status
 
 url: http://<host>/status/status.php which returns values regarding inverter status
 
