@@ -12,6 +12,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import (
+    SajR5DeviceDetails,
     SajR5AuthenticationError,
     SajR5CannotConnectError,
     SajR5Client,
@@ -34,6 +35,7 @@ class SajR5Coordinator(DataUpdateCoordinator[dict[str, Any | None]]):
         """Initialize the coordinator."""
 
         self.client = client
+        self.device_details = SajR5DeviceDetails()
         polling_time = entry.data.get(CONF_POLLING_TIME, DEFAULT_POLLING_TIME)
 
         super().__init__(
@@ -49,8 +51,26 @@ class SajR5Coordinator(DataUpdateCoordinator[dict[str, Any | None]]):
         """Fetch data from the inverter."""
 
         try:
-            return await self.client.async_get_status()
+            data = await self.client.async_get_status()
         except SajR5AuthenticationError as err:
             raise ConfigEntryAuthFailed("Invalid SAJ R5 credentials") from err
         except (SajR5CannotConnectError, SajR5InvalidResponseError) as err:
             raise UpdateFailed(str(err)) from err
+
+        if not self.device_details.is_complete:
+            await self._async_update_device_details()
+
+        return data
+
+    async def _async_update_device_details(self) -> None:
+        """Fetch device details without making metadata failures break sensors."""
+
+        try:
+            device_details = await self.client.async_get_device_details()
+        except SajR5AuthenticationError as err:
+            _LOGGER.debug("Authentication failed while fetching SAJ R5 details: %s", err)
+        except (SajR5CannotConnectError, SajR5InvalidResponseError) as err:
+            _LOGGER.debug("Unable to fetch SAJ R5 device details: %s", err)
+        else:
+            if device_details.has_any_value:
+                self.device_details = self.device_details.merged(device_details)

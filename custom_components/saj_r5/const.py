@@ -11,4 +11,6 @@ MAX_POLLING_TIME = 3600
 
 CONF_POLLING_TIME = "polling_time"
 
-ENDPOINT_PATH = "/status/status.php"
+INFO_ENDPOINT_PATH = "/info.php"
+STATUS_ENDPOINT_PATH = "/status/status.php"
+WIFI_ENDPOINT_PATH = "/wifi.php"

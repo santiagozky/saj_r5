@@ -3,10 +3,12 @@ Introduction:
 This is a home assistant integration that reads that of a SAJ solar inverter through its provided endpoints.
 
 The integration should follow the most recent best practices for a home assistant integration which includes:
--config flow to allow configuration through the UI
--allow reconfigure the entry, particularly since the inverter ip or username might change at some point
--use a coordinator to periodically poll data from the inverter
--generate an inverter device with its entities assigned to it
+- config flow to allow configuration through the UI
+- allow reconfigure the entry, particularly since the inverter ip or username might change at some point
+- use a coordinator to periodically poll data from the inverter
+- generate an inverter device with its entities assigned to it and the device info
+
+if the given host or ip cannot be reached it might mean that it is incorrect but also it might be off due to lack of light. include this feedback during configuration (user will need to configure the inverter while it is on)
 
 
 ## configuration
@@ -17,13 +19,20 @@ username: optional, for accessing the endpoint when it requires basic http auth,
 password: optional, for accessing the endpoint when it requires basic http auth
 polling time: how often to poll. defaults to 30 seconds
 
-##The endpoint
-the inverter has an endpoint in http://ip/status/status.php which returns a series of values separatedby a comma. example:
-1,2535833,157394,1512,73, 1969,767,1982,750,65535,65535,0,0,65535,65535,0,0,65535,65535,0,0,65535,65535,2913,4998,2347,1236,65535,65535,65535,65535,3649,494,199062,2
+#Polling information from the inverter
+The inverter provides several endpoints that return comma separated values. the following sections provide, where necesary, a specific endpoints and the values this integration should be concerned with. some values require some transformation or interpretation. each section will provide information on how to do it.
 
-values 65535 are to be interpreted as unavailable
+all indices start at 0.
 
-##value mapping to sensor
+The inverter is a grid tied inverter so it might shutdown when there is no enough light for it to work, so it wont respond to requests at that time, this integration should handle a no response setting the  device / entities as unavailable.
+
+
+
+##Inverter status
+
+url: http://<host>/status/status.php which returns values regarding inverter status
+
+Values 65535 are to be interpreted as unavailable
 
 These are the values indexes and their meaning I need polled and assigned to entities alogn with how they should be interpreted
 
@@ -65,25 +74,35 @@ These are the values indexes and their meaning I need polled and assigned to ent
 31  bus voltage (divide by 10 so 3649 is 364.9v)
 32  temperature (divide by 10 494 is 49.4c)
 33  co2 reduction (divide by 10 so 1000 is 100kg )
-34  running state
+34  running state, the values can be:
+         0: not connected
+         1: waiting
+         2: normal
+         3: error
+         4: upgrading
 
-#inverter info:
 
-The inverter is a grid tied inverter so it might shutdown when there is no enough light for it to work, so it wont respond to requests at that time, this integration should handle a no response setting the  device / entities as unavailable.
+#device info
+the mac, ip and serial number should not be entities but part of the device registration info.
+
+## network connectivity
+endpoint url:  http://<host>/wifi.php
+ Im only interested in the following (starting at 0)
+7  ip of the device
+13  mac address of the device
 
 
+## device info
+the endpoint  http://<host>/info.php provides 
+Im iterested in the following:
+0  inverter serial number
 
-#information of the integration
+
+# information of the integration
 the name is "SAJ R5 integration"
 domain is saj_r5
 codeowner is santiagozky
 my github account is github.com/santiagozky
 
-#deploying 
-you should only deploy when explicitly asked for it.
-the deployment is done by copying the integration directory to my hass stage environment
-ssh to host ubuntu2 and my stage hass is in /var/homeassistant.stage/custom_components
-my user has a ssh key so no password is needed
-you can restar home assistant after copying the files using docker compose in 
-/home/santiago/services/ubuntu2/home-assistant-stage
-with $ docker compose restart (no sudo needed)
+# deploying 
+run the deploy-stage.sh script

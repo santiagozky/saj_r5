@@ -25,7 +25,7 @@ from homeassistant.const import (
     UnitOfTime,
 )
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -321,12 +321,26 @@ class SajR5Sensor(CoordinatorEntity[SajR5Coordinator], SensorEntity):
     def device_info(self) -> DeviceInfo:
         """Return device information for this inverter."""
 
+        device_details = self.coordinator.device_details
+        identifiers = {(DOMAIN, self._entry.entry_id)}
+        connections = set()
+
+        if device_details.serial_number:
+            identifiers.add((DOMAIN, device_details.serial_number))
+
+        if device_details.mac_address:
+            connections.add((CONNECTION_NETWORK_MAC, device_details.mac_address))
+
+        configuration_host = device_details.ip_address or self._entry.data[CONF_HOST]
+
         return DeviceInfo(
-            identifiers={(DOMAIN, self._entry.entry_id)},
+            identifiers=identifiers,
+            connections=connections,
             manufacturer="SAJ",
             model="R5",
             name=self._entry.data[CONF_NAME],
-            configuration_url=f"http://{self._entry.data[CONF_HOST]}",
+            serial_number=device_details.serial_number,
+            configuration_url=f"http://{configuration_host}",
         )
 
     @property
