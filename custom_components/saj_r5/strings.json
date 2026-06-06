@@ -1,0 +1,160 @@
+{
+  "title": "SAJ R5 integration",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up SAJ R5 inverter",
+        "data": {
+          "host": "Host or IP address",
+          "name": "Device name",
+          "username": "Username (optional)",
+          "password": "Password (optional)",
+          "polling_time": "Polling time"
+        },
+        "data_description": {
+          "polling_time": "Seconds between inverter status polls."
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure SAJ R5 inverter",
+        "data": {
+          "host": "Host or IP address",
+          "name": "Device name",
+          "username": "Username (optional)",
+          "password": "Password (optional)",
+          "polling_time": "Polling time"
+        },
+        "data_description": {
+          "polling_time": "Seconds between inverter status polls."
+        }
+      },
+      "reauth_confirm": {
+        "title": "[%key:common::config_flow::title::reauth%]",
+        "description": "The SAJ R5 inverter rejected the saved credentials.",
+        "data": {
+          "username": "Username (optional)",
+          "password": "Password (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the inverter.",
+      "invalid_auth": "Invalid username or password.",
+      "invalid_response": "The inverter returned an unexpected status response."
+    },
+    "abort": {
+      "already_configured": "This inverter is already configured.",
+      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
+      "reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Status"
+      },
+      "total_generated_energy": {
+        "name": "Total generated energy"
+      },
+      "total_running_time": {
+        "name": "Total running time"
+      },
+      "today_generated_energy": {
+        "name": "Today generated energy"
+      },
+      "today_running_time": {
+        "name": "Today running time"
+      },
+      "pv1_voltage": {
+        "name": "PV1 voltage"
+      },
+      "pv1_current": {
+        "name": "PV1 current"
+      },
+      "pv2_voltage": {
+        "name": "PV2 voltage"
+      },
+      "pv2_current": {
+        "name": "PV2 current"
+      },
+      "pv3_voltage": {
+        "name": "PV3 voltage"
+      },
+      "pv4_current": {
+        "name": "PV4 current"
+      },
+      "pv1_strcurr1": {
+        "name": "PV1 string current 1"
+      },
+      "pv1_strcurr2": {
+        "name": "PV1 string current 2"
+      },
+      "pv1_strcurr3": {
+        "name": "PV1 string current 3"
+      },
+      "pv1_strcurr4": {
+        "name": "PV1 string current 4"
+      },
+      "pv2_strcurr1": {
+        "name": "PV2 string current 1"
+      },
+      "pv2_strcurr2": {
+        "name": "PV2 string current 2"
+      },
+      "pv2_strcurr3": {
+        "name": "PV2 string current 3"
+      },
+      "pv2_strcurr4": {
+        "name": "PV2 string current 4"
+      },
+      "pv3_strcurr1": {
+        "name": "PV3 string current 1"
+      },
+      "pv3_strcurr2": {
+        "name": "PV3 string current 2"
+      },
+      "pv3_strcurr3": {
+        "name": "PV3 string current 3"
+      },
+      "pv3_strcurr4": {
+        "name": "PV3 string current 4"
+      },
+      "grid_connected_power": {
+        "name": "Grid-connected power"
+      },
+      "grid_connected_frequency": {
+        "name": "Grid-connected frequency"
+      },
+      "line1_voltage": {
+        "name": "Line 1 voltage"
+      },
+      "line1_current": {
+        "name": "Line 1 current"
+      },
+      "line2_voltage": {
+        "name": "Line 2 voltage"
+      },
+      "line2_current": {
+        "name": "Line 2 current"
+      },
+      "line3_voltage": {
+        "name": "Line 3 voltage"
+      },
+      "line3_current": {
+        "name": "Line 3 current"
+      },
+      "bus_voltage": {
+        "name": "Bus voltage"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "co2_reduction": {
+        "name": "CO2 reduction"
+      },
+      "running_state": {
+        "name": "Running state"
+      }
+    }
+  }
+}
