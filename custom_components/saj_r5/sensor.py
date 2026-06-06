@@ -61,9 +61,9 @@ SENSOR_DESCRIPTIONS: tuple[SajR5SensorEntityDescription, ...] = (
     SajR5SensorEntityDescription(
         key="today_generated_energy",
         translation_key="today_generated_energy",
-        device_class=SensorDeviceClass.POWER,
-        native_unit_of_measurement=UnitOfPower.WATT,
-        state_class=SensorStateClass.MEASUREMENT,
+        device_class=SensorDeviceClass.ENERGY,
+        native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
+        state_class=SensorStateClass.TOTAL_INCREASING,
     ),
     SajR5SensorEntityDescription(
         key="today_running_time",

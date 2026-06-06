@@ -39,7 +39,7 @@ These are the values indexes and their meaning I need polled and assigned to ent
 0   status (online is 1, offline 0 which might happen when it's on but not converting power yet)
 1   total generated energy (divide by 100 for kwh)
 2   total running time (divide by 10 for hours)
-3   today generated energy (divide by 100 for watts)
+3   today generated energy (divide by 100 for kwh)
 4   today running time (dievide by 10 for hours)
 
 5   pv1 voltage (all voltages should be divided by 10 so 2073 is 207.3v)
