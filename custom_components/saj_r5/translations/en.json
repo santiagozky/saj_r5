@@ -119,8 +119,8 @@
       "pv3_strcurr4": {
         "name": "PV3 string current 4"
       },
-      "grid_connected_power": {
-        "name": "Grid-connected power"
+      "output_power": {
+        "name": "Output power"
       },
       "grid_connected_frequency": {
         "name": "Grid-connected frequency"

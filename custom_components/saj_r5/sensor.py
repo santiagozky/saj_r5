@@ -199,8 +199,8 @@ SENSOR_DESCRIPTIONS: tuple[SajR5SensorEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SajR5SensorEntityDescription(
-        key="grid_connected_power",
-        translation_key="grid_connected_power",
+        key="output_power",
+        translation_key="output_power",
         device_class=SensorDeviceClass.POWER,
         native_unit_of_measurement=UnitOfPower.WATT,
         state_class=SensorStateClass.MEASUREMENT,

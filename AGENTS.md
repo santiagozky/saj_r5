@@ -62,7 +62,7 @@ These are the values indexes and their meaning I need polled and assigned to ent
 21  pv3 strcurr3
 22  pv3 strcurr4
 
-23  grid-connected power (in watts, as is)
+23  output power (in watts, as is)
 24  grid connected frequency (divided by 100 so 5004 is 50.02hz)
 25  line1 voltage
 26  line1 current

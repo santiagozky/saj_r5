@@ -123,7 +123,7 @@ VALUE_DESCRIPTIONS: tuple[SajR5ValueDescription, ...] = (
     SajR5ValueDescription("pv3_strcurr2", 20, _scaled(100)),
     SajR5ValueDescription("pv3_strcurr3", 21, _scaled(100)),
     SajR5ValueDescription("pv3_strcurr4", 22, _scaled(100)),
-    SajR5ValueDescription("grid_connected_power", 23, int),
+    SajR5ValueDescription("output_power", 23, int),
     SajR5ValueDescription("grid_connected_frequency", 24, _scaled(100)),
     SajR5ValueDescription("line1_voltage", 25, _scaled(10)),
     SajR5ValueDescription("line1_current", 26, _scaled(100)),
