@@ -47,7 +47,7 @@ These are the values indexes and their meaning I need polled and assigned to ent
 7   pv2 voltage
 8   pv2 current
 9   pv3 voltage
-10  pv4 current
+10  pv3 current
 
 11  pv1 strcurr1
 12  pv1 strcurr2

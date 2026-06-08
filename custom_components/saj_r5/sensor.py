@@ -108,8 +108,8 @@ SENSOR_DESCRIPTIONS: tuple[SajR5SensorEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SajR5SensorEntityDescription(
-        key="pv4_current",
-        translation_key="pv4_current",
+        key="pv3_current",
+        translation_key="pv3_current",
         device_class=SensorDeviceClass.CURRENT,
         native_unit_of_measurement=UnitOfElectricCurrent.AMPERE,
         state_class=SensorStateClass.MEASUREMENT,

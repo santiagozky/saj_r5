@@ -80,8 +80,8 @@
       "pv3_voltage": {
         "name": "PV3 voltage"
       },
-      "pv4_current": {
-        "name": "PV4 current"
+      "pv3_current": {
+        "name": "PV3 current"
       },
       "pv1_strcurr1": {
         "name": "PV1 string current 1"
